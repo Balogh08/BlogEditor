@@ -1,0 +1,58 @@
+{
+  "name": "react_starter_repo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "...",
+  "author": {
+    "name": "Balogh Botond",
+    "email": "balogh.botond8@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Balogh-Kiss Alexandra"
+    }
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "build_prod": "GENERATE_SOURCEMAP=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "mac:start_latest_emulator": "./scripts/startLatestEmulatorSession.sh",
+    "win:start_latest_emulator": "scripts\\startLatestEmulatorSession.bat",
+    "mac:export_emulator_state": "./scripts/exportEmulatorState.sh",
+    "win:export_emulator_state": "scripts\\exportEmulatorState.bat"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.6.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "firebase": "^10.12.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.51.5",
+    "react-modal": "^3.16.1",
+    "react-router-dom": "^6.23.1",
+    "react-scripts": "5.0.1",
+    "react-transition-group": "^4.4.5",
+    "styled-components": "^6.1.11",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "eslint-config-google": "^0.14.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

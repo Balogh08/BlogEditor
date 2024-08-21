@@ -1,0 +1,1 @@
+Here you can store the necessary assets which must be available at start time and cannot be retrieved from the `public` folder.
