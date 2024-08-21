@@ -444,6 +444,9 @@ const Editor = ({onChange}) => {
               "toggleTableCaption",
             ],
           },
+          menuBar: {
+            isVisible: true,
+          },
           plugins: [
             Alignment,
             Autoformat,
