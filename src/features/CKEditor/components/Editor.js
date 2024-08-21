@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
-import {ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Undo} from "ckeditor5";
+import {ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Undo, FindAndReplace} from "ckeditor5";
 
 import "ckeditor5/ckeditor5.css";
 
@@ -19,10 +19,23 @@ const Editor = ({onChange}) => {
         editor={ClassicEditor}
         config={ {
           toolbar: {
-            items: ["undo", "redo", "|", "bold", "italic"],
+            items: [
+              // --- Document-wide tools ----------------------------------------------------------------------
+              "undo",
+              "redo",
+              "|",
+              "formatPainter",
+              "caseChange",
+              "findAndReplace",
+              "selectAll",
+              "wproofreader",
+              "|",
+              "insertTemplate",
+              "tableOfContents",
+              "|"],
           },
           plugins: [
-            Bold, Essentials, Italic, Mention, Paragraph, Undo,
+            Bold, Essentials, Italic, Mention, Paragraph, Undo, FindAndReplace,
           ],
           licenseKey: "",
           mention: {
