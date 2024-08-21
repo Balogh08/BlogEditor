@@ -5,7 +5,6 @@ import {
   Alignment,
   Autoformat,
   Bold,
-  CKBox,
   Code,
   Italic,
   Strikethrough,
@@ -195,20 +194,6 @@ const REDUCED_MATERIAL_COLORS = [
   {label: "Grey 900", color: "#212121"},
   {label: "Blue grey 900", color: "#263238"},
 ];
-
-// CKEditor Commercial Features require a license key to work properly.
-// * You can get a trial license key: https://orders.ckeditor.com/trial/premium-features.
-// * Or you can comment out (disable) the plugins imported from the "ckeditor5-premium-features" package.
-const LICENSE_KEY = "";
-
-// CKBox plugin requires a valid token URL in order to use the CKBox application.
-// After registering to CKBox, the fastest way to try out CKBox is to use the development token endpoint:
-// https://ckeditor.com/docs/ckbox/latest/guides/configuration/authentication.html#token-endpoint
-const CKBOX_TOKEN_URL = "";
-
-// WProofreader plugin require a license key to work properly.
-// For more info how to get the key, see https://ckeditor.com/docs/ckeditor5/latest/features/spelling-and-grammar-checking.html.
-const WEB_SPELL_CHECKER_LICENSE_KEY = "";
 
 const Editor = ({onChange}) => {
   const [editorData, setEditorData] = useState("");
@@ -437,7 +422,6 @@ const Editor = ({onChange}) => {
             AutoLink,
             BlockQuote,
             Bold,
-            ...(CKBOX_TOKEN_URL ? [CKBox] : []),
             CloudServices,
             Code,
             CodeBlock,
@@ -488,18 +472,6 @@ const Editor = ({onChange}) => {
             TodoList,
             Underline,
             WordCount,
-            ...(WEB_SPELL_CHECKER_LICENSE_KEY ? [] : []),
-            ...(LICENSE_KEY ? [
-            //   CaseChange,
-            //   ExportPdf,
-            //   ExportWord,
-            //   FormatPainter,
-            //   ImportWord,
-            //   MultiLevelList,
-            //   SlashCommand,
-            //   TableOfContents,
-            //   Template,
-            ] : []),
           ],
           licenseKey: "",
           mention: {
