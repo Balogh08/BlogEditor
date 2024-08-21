@@ -434,6 +434,16 @@ const Editor = ({onChange}) => {
             addTargetToExternalLinks: true,
             defaultProtocol: "https://",
           },
+          table: {
+            contentToolbar: [
+              "tableColumn",
+              "tableRow",
+              "mergeTableCells",
+              "tableProperties",
+              "tableCellProperties",
+              "toggleTableCaption",
+            ],
+          },
           plugins: [
             Alignment,
             Autoformat,
