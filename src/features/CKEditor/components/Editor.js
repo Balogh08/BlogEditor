@@ -232,25 +232,14 @@ const Editor = ({onChange}) => {
               "undo",
               "redo",
               "|",
-              "importWord",
-              "exportWord",
-              "exportPdf",
-              "|",
-              "formatPainter",
-              "caseChange",
               "findAndReplace",
               "selectAll",
-              "wproofreader",
-              "|",
-              "insertTemplate",
-              "tableOfContents",
               "|",
 
               // --- "Insertables" ----------------------------------------------------------------------------
 
               "link",
               "insertImage",
-              "ckbox",
               "insertTable",
               "blockQuote",
               "mediaEmbed",
@@ -258,11 +247,9 @@ const Editor = ({onChange}) => {
               "pageBreak",
               "horizontalLine",
               "specialCharacters",
-              "-",
 
               // --- Block-level formatting -------------------------------------------------------------------
               "heading",
-              "style",
               "|",
 
               // --- Basic styles, font and inline formatting -------------------------------------------------------
@@ -282,9 +269,6 @@ const Editor = ({onChange}) => {
                   "superscript",
                   "subscript",
                   "code",
-                  "|",
-                  "textPartLanguage",
-                  "|",
                 ],
               },
               "removeFormat",
@@ -297,7 +281,6 @@ const Editor = ({onChange}) => {
               // --- Lists and indentation --------------------------------------------------------------------
               "bulletedList",
               "numberedList",
-              "multilevelList",
               "todoList",
               "|",
               "outdent",
