@@ -342,9 +342,6 @@ const Editor = ({onChange}) => {
             WordCount,
           ],
           licenseKey: "",
-          mention: {
-            // Mention configuration
-          },
           initialData: "<p>Hello from CKEditor 5 in React!</p>",
         } }
         data={editorData}
