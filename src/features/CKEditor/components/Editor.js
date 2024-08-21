@@ -414,6 +414,26 @@ const Editor = ({onChange}) => {
               "resizeImage",
             ],
           },
+          list: {
+            properties: {
+              styles: true,
+              startIndex: true,
+              reversed: true,
+            },
+          },
+          link: {
+            decorators: {
+              toggleDownloadable: {
+                mode: "manual",
+                label: "Downloadable",
+                attributes: {
+                  download: "file",
+                },
+              },
+            },
+            addTargetToExternalLinks: true,
+            defaultProtocol: "https://",
+          },
           plugins: [
             Alignment,
             Autoformat,
