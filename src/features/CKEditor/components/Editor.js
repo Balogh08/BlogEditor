@@ -58,20 +58,9 @@ import {
   TextTransformation,
   WordCount} from "ckeditor5";
 import {REDUCED_MATERIAL_COLORS} from "../assets/colors";
-import {EMOJIS_ARRAY} from "../assets/emojis";
+import {SpecialCharactersEmoji} from "../assets/emojis";
 
 import "ckeditor5/ckeditor5.css";
-
-function SpecialCharactersEmoji(editor) {
-  if (!editor.plugins.get("SpecialCharacters")) {
-    return;
-  }
-
-  // Make sure Emojis are last on the list.
-  this.afterInit = function() {
-    editor.plugins.get("SpecialCharacters").addItems("Emoji", EMOJIS_ARRAY);
-  };
-}
 
 
 const Editor = ({onChange}) => {

@@ -1,4 +1,4 @@
-export const EMOJIS_ARRAY = [
+const EMOJIS_ARRAY = [
   {character: "🙈", title: "See-No-Evil Monkey"},
   {character: "🙄", title: "Face With Rolling Eyes"},
   {character: "🙃", title: "Upside Down Face"},
@@ -102,3 +102,16 @@ export const EMOJIS_ARRAY = [
   {character: "☹️", title: "Frowning Face"},
   {character: "☀️", title: "Sun"},
 ];
+
+export class SpecialCharactersEmoji {
+  constructor(editor) {
+    if (!editor.plugins.get("SpecialCharacters")) {
+      return;
+    }
+
+    // Make sure Emojis are last on the list.
+    this.afterInit = function() {
+      editor.plugins.get("SpecialCharacters").addItems("Emoji", EMOJIS_ARRAY);
+    };
+  }
+}
