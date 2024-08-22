@@ -48,13 +48,13 @@ const EditorPage = () => {
           <Editor
             onChange={setContentToSave}
             initialData={content} />
-          <button onClick={toggleMode} style={{marginTop: "20px"}}>
+          <button onClick={toggleMode} style={{marginTop: "20px", marginRight: "20px"}}>
             Preview
           </button>
-          <button onClick={handleSave} style={{marginTop: "20px"}}>
+          <button onClick={handleSave} style={{marginTop: "20px", marginRight: "20px"}}>
             Save
           </button>
-          <button onClick={createNew} style={{marginTop: "20px"}}>
+          <button onClick={createNew} style={{marginTop: "20px", marginRight: "20px"}}>
             New
           </button>
 
