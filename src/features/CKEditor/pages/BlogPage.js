@@ -32,9 +32,23 @@ const EditorPage = () => {
   };
 
   const createNew = () => {
-    setContent("New");
+    setContent("");
     setSelectedDocIndex(null);
   };
+
+  const deleteCurrent = () => {
+    if (selectedDocIndex !== null) {
+      // Create a new list without the selected document
+      const updatedDocuments =
+        documents.filter((_, index) => index !== selectedDocIndex);
+      setDocuments(updatedDocuments);
+    }
+
+    // Clear the editor and reset the selected index
+    setContent("");
+    setSelectedDocIndex(null);
+  };
+
 
   const toggleMode = () => {
     setIsEditing(!isEditing);
@@ -56,6 +70,9 @@ const EditorPage = () => {
           </button>
           <button onClick={createNew} style={{marginTop: "20px", marginRight: "20px"}}>
             New
+          </button>
+          <button onClick={deleteCurrent} style={{marginTop: "20px", marginRight: "20px"}}>
+            Delete
           </button>
 
           <h2 style={{marginTop: "40px"}}>Saved Documents</h2>
