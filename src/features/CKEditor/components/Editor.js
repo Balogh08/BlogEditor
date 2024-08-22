@@ -74,11 +74,10 @@ const Editor = ({onChange}) => {
   };
 
   return (
-    <div>
+    <div style={{width: "795px"}}>
       <CKEditor
         editor={ClassicEditor}
         config={ {
-
           shouldNotGroupWhenFull: true,
           toolbar: {
             items: [
