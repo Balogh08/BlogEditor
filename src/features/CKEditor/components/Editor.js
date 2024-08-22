@@ -349,7 +349,7 @@ const Editor = ({onChange, initialData}) => {
             WordCount,
           ],
           licenseKey: "",
-          initialData: "<p>Hello from CKEditor 5 in React!</p>",
+          initialData: initialData,
         } }
         data={editorData}
         onChange={handleEditorChange}

@@ -51,6 +51,7 @@ const EditorPage = () => {
 
 
   const toggleMode = () => {
+    setContent(contentToSave);
     setIsEditing(!isEditing);
   };
 
