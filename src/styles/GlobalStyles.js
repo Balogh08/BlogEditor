@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: ${(props) => props.theme.fonts.arialRegular17.lineHeight};
     font-size: ${(props) => props.theme.fonts.arialRegular17.fontSize};
     font-weight: ${(props) => props.theme.fonts.arialRegular17.fontWeight};
+    margin: 40px;
   }
   * {
     box-sizing: border-box;
