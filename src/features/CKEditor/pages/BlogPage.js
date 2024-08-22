@@ -73,7 +73,7 @@ const EditorPage = () => {
         <div>
           <h2>Preview</h2>
           <div
-            dangerouslySetInnerHTML={{__html: content}}
+            dangerouslySetInnerHTML={{__html: contentToSave}}
             style={{border: "1px solid #ccc", padding: "10px",
               maxWidth: "795px", // Set a maximum width relative to the parent container
               overflow: "auto", // Ensure that scrollbars appear if the content exceeds the div's size
