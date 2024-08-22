@@ -349,7 +349,7 @@ const Editor = ({onChange, initialData}) => {
             WordCount,
           ],
           licenseKey: "",
-          initialData: initialData,
+          initialData: "",
         } }
         data={editorData}
         onChange={handleEditorChange}
