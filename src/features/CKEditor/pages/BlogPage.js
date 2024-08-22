@@ -9,17 +9,25 @@ const EditorPage = () => {
   const [selectedDocIndex, setSelectedDocIndex] = useState(null);
 
   const handleSave = () => {
-    // Save the current content to the documents list
-    setDocuments([...documents, contentToSave]);
+    if (selectedDocIndex !== null) {
+      // Update the existing document if an index is selected
+      const updatedDocuments = documents.map((doc, index) =>
+        index === selectedDocIndex ? contentToSave : doc,
+      );
+      setDocuments(updatedDocuments);
+    } else {
+      // Add a new document if no index is selected
+      setDocuments([...documents, contentToSave]);
+      // setSelectedDocIndex(documents.length); // Update to the new document index
+    }
+
     setContent(""); // Clear the editor for new content
-    setSelectedDocIndex(documents.length); // Update to new document index
-    console.debug("selectedDocIndex: ", selectedDocIndex);
+    setSelectedDocIndex(null);
   };
 
   const handleDocumentClick = (index) => {
     // Load the selected document into the editor
     setContent(documents[index]);
-    console.debug("documents[index]: ", documents[index]);
     setSelectedDocIndex(index);
   };
 
