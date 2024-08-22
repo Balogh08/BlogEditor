@@ -3,13 +3,14 @@ import Editor from "../components/Editor";
 
 const EditorPage = () => {
   const [content, setContent] = useState("");
+  const [contentToSave, setContentToSave] = useState("");
   const [isEditing, setIsEditing] = useState(true);
   const [documents, setDocuments] = useState([]);
   const [selectedDocIndex, setSelectedDocIndex] = useState(null);
 
   const handleSave = () => {
     // Save the current content to the documents list
-    setDocuments([...documents, content]);
+    setDocuments([...documents, contentToSave]);
     setContent(""); // Clear the editor for new content
     setSelectedDocIndex(documents.length); // Update to new document index
     console.debug("selectedDocIndex: ", selectedDocIndex);
@@ -31,7 +32,9 @@ const EditorPage = () => {
       <h1>Blog Editor</h1>
       {isEditing ? (
         <div>
-          <Editor onChange={setContent} />
+          <Editor
+            onChange={setContentToSave}
+            initialData={content} />
           <button onClick={toggleMode} style={{marginTop: "20px"}}>
             Preview
           </button>
