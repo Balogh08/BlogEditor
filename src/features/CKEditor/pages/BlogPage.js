@@ -31,6 +31,11 @@ const EditorPage = () => {
     setSelectedDocIndex(index);
   };
 
+  const createNew = () => {
+    setContent("New");
+    setSelectedDocIndex(null);
+  };
+
   const toggleMode = () => {
     setIsEditing(!isEditing);
   };
@@ -48,6 +53,9 @@ const EditorPage = () => {
           </button>
           <button onClick={handleSave} style={{marginTop: "20px"}}>
             Save
+          </button>
+          <button onClick={createNew} style={{marginTop: "20px"}}>
+            New
           </button>
 
           <h2 style={{marginTop: "40px"}}>Saved Documents</h2>
