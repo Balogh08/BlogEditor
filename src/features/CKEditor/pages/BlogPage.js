@@ -4,6 +4,23 @@ import Editor from "../components/Editor";
 const EditorPage = () => {
   const [content, setContent] = useState("");
   const [isEditing, setIsEditing] = useState(true);
+  const [documents, setDocuments] = useState([]);
+  const [selectedDocIndex, setSelectedDocIndex] = useState(null);
+
+  const handleSave = () => {
+    // Save the current content to the documents list
+    setDocuments([...documents, content]);
+    setContent(""); // Clear the editor for new content
+    setSelectedDocIndex(documents.length); // Update to new document index
+    console.debug("selectedDocIndex: ", selectedDocIndex);
+  };
+
+  const handleDocumentClick = (index) => {
+    // Load the selected document into the editor
+    setContent(documents[index]);
+    console.debug("documents[index]: ", documents[index]);
+    setSelectedDocIndex(index);
+  };
 
   const toggleMode = () => {
     setIsEditing(!isEditing);
@@ -18,6 +35,20 @@ const EditorPage = () => {
           <button onClick={toggleMode} style={{marginTop: "20px"}}>
             Preview
           </button>
+          <button onClick={handleSave} style={{marginTop: "20px"}}>
+            Save
+          </button>
+
+          <h2 style={{marginTop: "40px"}}>Saved Documents</h2>
+          <ul style={{listStyleType: "none", paddingLeft: 0}}>
+            {documents.map((doc, index) => (
+              <li key={index} style={{marginBottom: "10px"}}>
+                <button onClick={() => handleDocumentClick(index)}>
+              Document {index + 1}
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       ) : (
         <div>
