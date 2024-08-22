@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
 import {
   ClassicEditor,
@@ -64,8 +64,12 @@ import {SpecialCharactersEmoji} from "../assets/emojis";
 import "ckeditor5/ckeditor5.css";
 
 
-const Editor = ({onChange}) => {
+const Editor = ({onChange, initialData}) => {
   const [editorData, setEditorData] = useState("");
+
+  useEffect(() => {
+    setEditorData(initialData);
+  }, [initialData]);
 
   const handleEditorChange = (event, editor) => {
     const data = editor.getData();
@@ -345,7 +349,7 @@ const Editor = ({onChange}) => {
             WordCount,
           ],
           licenseKey: "",
-          initialData: "<p>Hello from CKEditor 5 in React!</p>",
+          initialData: "",
         } }
         data={editorData}
         onChange={handleEditorChange}
