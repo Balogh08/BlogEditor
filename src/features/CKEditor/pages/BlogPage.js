@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import Editor from "../components/Editor";
 
 const EditorPage = () => {
