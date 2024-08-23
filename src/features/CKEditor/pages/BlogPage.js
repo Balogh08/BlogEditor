@@ -18,7 +18,6 @@ const EditorPage = () => {
     } else {
       // Add a new document if no index is selected
       setDocuments([...documents, contentToSave]);
-      // setSelectedDocIndex(documents.length); // Update to the new document index
     }
 
     setContent(""); // Clear the editor for new content
@@ -93,9 +92,9 @@ const EditorPage = () => {
           <div
             dangerouslySetInnerHTML={{__html: contentToSave}}
             style={{border: "1px solid #ccc", padding: "10px",
-              maxWidth: "795px", // Set a maximum width relative to the parent container
-              overflow: "auto", // Ensure that scrollbars appear if the content exceeds the div's size
-              boxSizing: "border-box", // Ensure padding and border are included in the element's width and height
+              maxWidth: "795px",
+              overflow: "auto",
+              boxSizing: "border-box",
             }}
           />
           <button onClick={toggleMode} style={{marginTop: "20px"}}>
