@@ -1,5 +1,7 @@
 import {useState} from "react";
 import Editor from "../components/Editor";
+import EditorToolbar from "../components/EditorToolbar";
+import DocumentList from "../components/DocumentList";
 
 const BlogPage = () => {
   const [content, setContent] = useState("");
@@ -8,44 +10,34 @@ const BlogPage = () => {
   const [documents, setDocuments] = useState([]);
   const [selectedDocIndex, setSelectedDocIndex] = useState(null);
 
-  const handleSave = () => {
+  const saveDocument = () => {
     if (selectedDocIndex !== null) {
-      // Update the existing document if an index is selected
       const updatedDocuments = documents.map((doc, index) =>
         index === selectedDocIndex ? contentToSave : doc,
       );
       setDocuments(updatedDocuments);
     } else {
-      // Add a new document if no index is selected
       setDocuments([...documents, contentToSave]);
     }
-
-    setContent(""); // Clear the editor for new content
-    setSelectedDocIndex(null);
+    clearEditor();
   };
 
-  const handleDocumentClick = (index) => {
-    // Load the selected document into the editor
+  const loadDocument = (index) => {
     setContent(documents[index]);
     setSelectedDocIndex(index);
   };
 
-  const createNew = () => {
-    setContent("");
-    setSelectedDocIndex(null);
+  const createNewDocument = () => {
+    clearEditor();
   };
 
-  const deleteCurrent = () => {
+  const deleteDocument = () => {
     if (selectedDocIndex !== null) {
-      // Create a new list without the selected document
       const updatedDocuments =
         documents.filter((_, index) => index !== selectedDocIndex);
       setDocuments(updatedDocuments);
     }
-
-    // Clear the editor and reset the selected index
-    setContent("");
-    setSelectedDocIndex(null);
+    clearEditor();
   };
 
   const toggleMode = () => {
@@ -53,39 +45,25 @@ const BlogPage = () => {
     setIsEditing(!isEditing);
   };
 
+  const clearEditor = () => {
+    setContent("");
+    setSelectedDocIndex(null);
+  };
+
   return (
     <div>
       <h1>Blog Editor</h1>
       {isEditing ? (
         <div>
-          <Editor
-            onChange={setContentToSave}
-            initialData={content}
+          <Editor onChange={setContentToSave} initialData={content} />
+          <EditorToolbar
+            onPreview={toggleMode}
+            onSave={saveDocument}
+            onNew={createNewDocument}
+            onDelete={deleteDocument}
           />
-          <div style={{marginTop: "20px"}}>
-            <button onClick={toggleMode} style={{marginRight: "20px"}}>
-              Preview
-            </button>
-            <button onClick={handleSave} style={{marginRight: "20px"}}>
-              Save
-            </button>
-            <button onClick={createNew} style={{marginRight: "20px"}}>
-              New
-            </button>
-            <button onClick={deleteCurrent} style={{marginRight: "20px"}}>
-              Delete
-            </button>
-          </div>
-          <h2 style={{marginTop: "40px"}}>Blogs</h2>
-          <ul style={{listStyleType: "none", paddingLeft: 0}}>
-            {documents.map((doc, index) => (
-              <li key={index} style={{marginBottom: "10px"}}>
-                <button onClick={() => handleDocumentClick(index)}>
-                  Blog {index + 1}
-                </button>
-              </li>
-            ))}
-          </ul>
+          <h2>Blogs</h2>
+          <DocumentList documents={documents} onDocumentClick={loadDocument} />
         </div>
       ) : (
         <div>
