@@ -76,12 +76,12 @@ const BlogPage = () => {
               Delete
             </button>
           </div>
-          <h2 style={{marginTop: "40px"}}>Saved Documents</h2>
+          <h2 style={{marginTop: "40px"}}>Blogs</h2>
           <ul style={{listStyleType: "none", paddingLeft: 0}}>
             {documents.map((doc, index) => (
               <li key={index} style={{marginBottom: "10px"}}>
                 <button onClick={() => handleDocumentClick(index)}>
-                  Document {index + 1}
+                  Blog {index + 1}
                 </button>
               </li>
             ))}
