@@ -1,7 +1,7 @@
 import {useState} from "react";
 import Editor from "../components/Editor";
 
-const EditorPage = () => {
+const BlogPage = () => {
   const [content, setContent] = useState("");
   const [contentToSave, setContentToSave] = useState("");
   const [isEditing, setIsEditing] = useState(true);
@@ -48,7 +48,6 @@ const EditorPage = () => {
     setSelectedDocIndex(null);
   };
 
-
   const toggleMode = () => {
     setContent(contentToSave);
     setIsEditing(!isEditing);
@@ -61,26 +60,28 @@ const EditorPage = () => {
         <div>
           <Editor
             onChange={setContentToSave}
-            initialData={content} />
-          <button onClick={toggleMode} style={{marginTop: "20px", marginRight: "20px"}}>
-            Preview
-          </button>
-          <button onClick={handleSave} style={{marginTop: "20px", marginRight: "20px"}}>
-            Save
-          </button>
-          <button onClick={createNew} style={{marginTop: "20px", marginRight: "20px"}}>
-            New
-          </button>
-          <button onClick={deleteCurrent} style={{marginTop: "20px", marginRight: "20px"}}>
-            Delete
-          </button>
-
+            initialData={content}
+          />
+          <div style={{marginTop: "20px"}}>
+            <button onClick={toggleMode} style={{marginRight: "20px"}}>
+              Preview
+            </button>
+            <button onClick={handleSave} style={{marginRight: "20px"}}>
+              Save
+            </button>
+            <button onClick={createNew} style={{marginRight: "20px"}}>
+              New
+            </button>
+            <button onClick={deleteCurrent} style={{marginRight: "20px"}}>
+              Delete
+            </button>
+          </div>
           <h2 style={{marginTop: "40px"}}>Saved Documents</h2>
           <ul style={{listStyleType: "none", paddingLeft: 0}}>
             {documents.map((doc, index) => (
               <li key={index} style={{marginBottom: "10px"}}>
                 <button onClick={() => handleDocumentClick(index)}>
-              Document {index + 1}
+                  Document {index + 1}
                 </button>
               </li>
             ))}
@@ -91,7 +92,9 @@ const EditorPage = () => {
           <h2>Preview</h2>
           <div
             dangerouslySetInnerHTML={{__html: contentToSave}}
-            style={{border: "1px solid #ccc", padding: "10px",
+            style={{
+              border: "1px solid #ccc",
+              padding: "10px",
               maxWidth: "795px",
               overflow: "auto",
               boxSizing: "border-box",
@@ -106,4 +109,4 @@ const EditorPage = () => {
   );
 };
 
-export default EditorPage;
+export default BlogPage;
