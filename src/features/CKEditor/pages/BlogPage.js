@@ -1,7 +1,8 @@
-import {useState} from "react";
+import {useState, useRef, useEffect} from "react";
 import Editor from "../components/Editor";
 import EditorToolbar from "../components/EditorToolbar";
 import DocumentList from "../components/DocumentList";
+import "ckeditor5/ckeditor5.css";
 
 const BlogPage = () => {
   const [content, setContent] = useState("");
@@ -9,6 +10,7 @@ const BlogPage = () => {
   const [isEditing, setIsEditing] = useState(true);
   const [documents, setDocuments] = useState([]);
   const [selectedDocIndex, setSelectedDocIndex] = useState(null);
+  const iframeRef = useRef(null); // Ref to the iframe element
 
   const saveDocument = () => {
     if (selectedDocIndex !== null) {
@@ -34,7 +36,7 @@ const BlogPage = () => {
   const deleteDocument = () => {
     if (selectedDocIndex !== null) {
       const updatedDocuments =
-        documents.filter((_, index) => index !== selectedDocIndex);
+      documents.filter((_, index) => index !== selectedDocIndex);
       setDocuments(updatedDocuments);
     }
     clearEditor();
@@ -49,6 +51,50 @@ const BlogPage = () => {
     setContent("");
     setSelectedDocIndex(null);
   };
+
+
+  useEffect(() => {
+    console.debug("isEditing: ", isEditing);
+    if (!isEditing) {
+      const previewData = () => {
+        const iframe = iframeRef.current;
+        // console.debug("iframe: ", iframe);
+        if (iframe) {
+          // Find the necessary CSS files from the main document
+          const mainCSSElement = [...document.querySelectorAll("link")]
+              .find((linkElement) => linkElement.href.endsWith("./node_modules/ckeditor5/dist/ckeditor5.css"));
+          // const snippetCSSElement = [...document.querySelectorAll("link")]
+          //     .find((linkElement) => linkElement.href.endsWith("snippet.css"));
+          console.debug("mainCSSElement: ", mainCSSElement);
+          const html = `
+            <!DOCTYPE html>
+            <html>
+              <head>
+                <title>Preview</title>
+                ${mainCSSElement ? `<link rel="stylesheet" href="${mainCSSElement.href}" type="text/css">` : ""}
+              <style>
+                  body {
+                    padding: 20px;
+                  }
+                  .formatted p img {
+                    display: inline;
+                    margin: 0;
+                  }
+                </style>
+              </head>
+              <body class="formatted ck-content">
+                ${contentToSave}
+              </body>
+            </html>
+          `;
+          iframe.contentWindow.document.open();
+          iframe.contentWindow.document.write(html);
+          iframe.contentWindow.document.close();
+        }
+      };
+      previewData();
+    }
+  }, [contentToSave, isEditing]);
 
   return (
     <div>
@@ -68,16 +114,11 @@ const BlogPage = () => {
       ) : (
         <div>
           <h2>Preview</h2>
-          <div
-            dangerouslySetInnerHTML={{__html: contentToSave}}
-            style={{
-              border: "1px solid #ccc",
-              padding: "10px",
-              maxWidth: "795px",
-              overflow: "auto",
-              boxSizing: "border-box",
-            }}
-          />
+          <iframe
+            title="preview"
+            ref={iframeRef}
+            style={{width: "100%", border: "solid 2px #333"}}
+          ></iframe>
           <button onClick={toggleMode} style={{marginTop: "20px"}}>
             Edit
           </button>
