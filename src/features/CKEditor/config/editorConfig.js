@@ -26,7 +26,8 @@ import {
   ImageStyle,
   ImageToolbar,
   ImageUpload,
-  Base64UploadAdapter,
+  // Base64UploadAdapter,
+  SimpleUploadAdapter,
   PictureEditing,
   Indent,
   IndentBlock,
@@ -234,7 +235,8 @@ export const editorConfig = {
     ImageStyle,
     ImageToolbar,
     ImageUpload,
-    Base64UploadAdapter,
+    // Base64UploadAdapter,
+    SimpleUploadAdapter,
     Indent,
     IndentBlock,
     Italic,
@@ -271,4 +273,7 @@ export const editorConfig = {
   ],
   licenseKey: "",
   initialData: "",
+  simpleUpload: {
+    uploadUrl: "http://localhost:3001/upload",
+  },
 };

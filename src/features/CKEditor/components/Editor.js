@@ -3,8 +3,6 @@ import {CKEditor} from "@ckeditor/ckeditor5-react";
 import {ClassicEditor} from "ckeditor5";
 import {editorConfig} from "../config/editorConfig";
 
-import "ckeditor5/ckeditor5.css";
-
 
 const Editor = ({onChange, initialData}) => {
   const [editorData, setEditorData] = useState("");
