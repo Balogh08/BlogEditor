@@ -12,50 +12,18 @@ const BlogPage = () => {
   const [selectedDocIndex, setSelectedDocIndex] = useState(null);
   const iframeRef = useRef(null); // Ref to the iframe element
 
-  // const saveDocument = () => {
-  //   console.debug("contentToSave: ", contentToSave);
-  //   if (selectedDocIndex !== null) {
-  //     const updatedDocuments = documents.map((doc, index) =>
-  //       index === selectedDocIndex ? contentToSave : doc,
-  //     );
-  //     setDocuments(updatedDocuments);
-  //   } else {
-  //     setDocuments([...documents, contentToSave]);
-  //   }
-  //   clearEditor();
-  // };
-
   const saveDocument = () => {
-    // Parse the contentToSave as an HTML document
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(contentToSave, "text/html");
-
-    // Select all <img> tags
-    const images = doc.querySelectorAll("img");
-
-    // Update each <img> tag's width and height attributes to 100%
-    images.forEach((img) => {
-      img.setAttribute("width", "100%");
-      img.setAttribute("height", "100%");
-    });
-
-    // Serialize the modified document back to a string
-    const updatedContentToSave = doc.body.innerHTML;
-
-    // Update the documents array with the modified content
+    console.debug("contentToSave: ", contentToSave);
     if (selectedDocIndex !== null) {
       const updatedDocuments = documents.map((doc, index) =>
-        index === selectedDocIndex ? updatedContentToSave : doc,
+        index === selectedDocIndex ? contentToSave : doc,
       );
       setDocuments(updatedDocuments);
     } else {
-      setDocuments([...documents, updatedContentToSave]);
+      setDocuments([...documents, contentToSave]);
     }
-
-    // Clear the editor (assuming this is a function that exists)
     clearEditor();
   };
-
 
   const loadDocument = (index) => {
     setContent(documents[index]);
@@ -86,70 +54,19 @@ const BlogPage = () => {
   };
 
 
-  // useEffect(() => {
-  //   console.debug("isEditing: ", isEditing);
-  //   if (!isEditing) {
-  //     const previewData = () => {
-  //       const iframe = iframeRef.current;
-  //       // console.debug("iframe: ", iframe);
-  //       if (iframe) {
-  //         const html = `
-  //           <!DOCTYPE html>
-  //           <html>
-  //             <head>
-  //               <title>Preview</title>
-  //             <style>
-  //                 body {
-  //                   padding: 20px;
-  //                 }
-  //                 .formatted p img {
-  //                   display: inline;
-  //                   margin: 0;
-  //                 }
-  //               </style>
-  //             </head>
-  //             <body class="formatted ck-content">
-  //               ${contentToSave}
-  //             </body>
-  //           </html>
-  //         `;
-  //         iframe.contentWindow.document.open();
-  //         iframe.contentWindow.document.write(html);
-  //         iframe.contentWindow.document.close();
-  //       }
-  //     };
-  //     previewData();
-  //   }
-  // }, [contentToSave, isEditing]);
-
   useEffect(() => {
     console.debug("isEditing: ", isEditing);
     if (!isEditing) {
       const previewData = () => {
         const iframe = iframeRef.current;
-
+        // console.debug("iframe: ", iframe);
         if (iframe) {
-          // Parse the contentToSave as an HTML document
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(contentToSave, "text/html");
-
-          // Select all <img> tags and update their width and height to 100%
-          const images = doc.querySelectorAll("img");
-          images.forEach((img) => {
-            // img.setAttribute("width", "100%");
-            // img.setAttribute("height", "100%");
-          });
-
-          // Serialize the modified document back to a string
-          const updatedContentToSave = doc.body.innerHTML;
-
-          // Construct the HTML for the iframe
           const html = `
             <!DOCTYPE html>
             <html>
               <head>
                 <title>Preview</title>
-                <style>
+              <style>
                 @import url('/ckeditor5.css');
                   body {
                     padding: 20px;
@@ -161,18 +78,15 @@ const BlogPage = () => {
                 </style>
               </head>
               <body class="formatted ck-content">
-                ${updatedContentToSave}
+                ${contentToSave}
               </body>
             </html>
           `;
-
-          // Inject the HTML into the iframe
           iframe.contentWindow.document.open();
           iframe.contentWindow.document.write(html);
           iframe.contentWindow.document.close();
         }
       };
-
       previewData();
     }
   }, [contentToSave, isEditing]);
