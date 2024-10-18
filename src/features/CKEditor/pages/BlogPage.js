@@ -55,11 +55,9 @@ const BlogPage = () => {
 
 
   useEffect(() => {
-    console.debug("isEditing: ", isEditing);
     if (!isEditing) {
       const previewData = () => {
         const iframe = iframeRef.current;
-        // console.debug("iframe: ", iframe);
         if (iframe) {
           const html = `
             <!DOCTYPE html>
@@ -67,7 +65,7 @@ const BlogPage = () => {
               <head>
                 <title>Preview</title>
               <style>
-                @import url('/ckeditor5.css');
+                @import url('./node_modules/ckeditor5/dist/ckeditor5.css'); 
                   body {
                     padding: 20px;
                   }
